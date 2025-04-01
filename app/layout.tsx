@@ -36,7 +36,6 @@ export default function RootLayout({
 }
 
 
-// test commit
 import './globals.css'
 
 export const metadata = {
