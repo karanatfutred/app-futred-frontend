@@ -1,0 +1,178 @@
+export const courses = [
+  {
+    id: 1,
+    title:
+      "Unit 1: Foundations of Critical Thinking and Business Problem Solving",
+    description:
+      "Learn critical thinking frameworks and problem-solving methodologies for business contexts",
+    estimatedHours: 16,
+    externalLink: "https://example.com/course/unit1",
+    progress: 100,
+    status: "Completed",
+    completionDate: "April 10, 2025",
+    materials: ["Lecture Notes", "Case Studies", "Assessment Guide"],
+    instructor: "Dr. Sarah Johnson",
+    rating: 4.8,
+  },
+  {
+    id: 2,
+    title: "Unit 2: Principles of Budgeting and Financial Management",
+    description:
+      "Master the fundamentals of business budgeting and financial planning",
+    estimatedHours: 20,
+    externalLink: "https://example.com/course/unit2",
+    progress: 100,
+    status: "Completed",
+    completionDate: "April 20, 2025",
+    materials: [
+      "Financial Templates",
+      "Budget Examples",
+      "Financial Analysis Tools",
+    ],
+    instructor: "Prof. Michael Chen",
+    rating: 4.6,
+  },
+  {
+    id: 3,
+    title:
+      "Unit 3: Introduction to Sustainable Business Policies and Practices",
+    description:
+      "Explore sustainable business strategies and environmental policy development",
+    estimatedHours: 25,
+    externalLink: "https://example.com/course/unit3",
+    progress: 75,
+    status: "In Progress",
+    dueDate: "May 15, 2025",
+    materials: [
+      "Sustainability Guidelines",
+      "Case Studies",
+      "Policy Templates",
+    ],
+    instructor: "Dr. Emma Rodriguez",
+    rating: 4.9,
+  },
+  {
+    id: 4,
+    title: "Unit 4: Fundamentals of Business Resource Management",
+    description:
+      "Learn effective resource allocation and management in business contexts",
+    estimatedHours: 31,
+    externalLink: "https://example.com/course/unit4",
+    progress: 45,
+    status: "In Progress",
+    dueDate: "May 30, 2025",
+    materials: [
+      "Resource Planning Tools",
+      "Allocation Strategies",
+      "Management Frameworks",
+    ],
+    instructor: "Prof. James Wilson",
+    rating: 4.7,
+  },
+  {
+    id: 5,
+    title: "Unit 5: Principles of Effective Meetings and Team Dynamics",
+    description:
+      "Master techniques for productive meetings and team collaboration",
+    estimatedHours: 37,
+    externalLink: "https://example.com/course/unit5",
+    progress: 10,
+    status: "Just Started",
+    dueDate: "June 15, 2025",
+    materials: [
+      "Meeting Templates",
+      "Team Building Exercises",
+      "Collaboration Tools",
+    ],
+    instructor: "Dr. Lisa Thompson",
+    rating: 4.5,
+  },
+  {
+    id: 6,
+    title:
+      "Unit 6: Basics of Human Resource: Recruitment and Talent Management",
+    description:
+      "Learn effective recruitment strategies and talent development approaches",
+    estimatedHours: 45,
+    externalLink: "https://example.com/course/unit6",
+    progress: 0,
+    status: "Not Started",
+    dueDate: "July 1, 2025",
+    materials: [
+      "Recruitment Guides",
+      "Interview Templates",
+      "Talent Development Plans",
+    ],
+    instructor: "Prof. Robert Garcia",
+    rating: 4.8,
+  },
+  {
+    id: 7,
+    title: "Unit 7: Fundamentals of Operational Planning and Management",
+    description:
+      "Master operational planning techniques and management strategies",
+    estimatedHours: 51,
+    externalLink: "https://example.com/course/unit7",
+    progress: 0,
+    status: "Not Started",
+    dueDate: "July 15, 2025",
+    materials: ["Operational Plans", "Management Frameworks", "Case Studies"],
+    instructor: "Dr. Thomas Brown",
+    rating: 4.6,
+  },
+  {
+    id: 8,
+    title: "Unit 8: Introduction to Business Risk Management",
+    description:
+      "Learn to identify, assess, and mitigate business risks effectively",
+    estimatedHours: 57,
+    externalLink: "https://example.com/course/unit8",
+    progress: 0,
+    status: "Not Started",
+    dueDate: "August 1, 2025",
+    materials: [
+      "Risk Assessment Tools",
+      "Mitigation Strategies",
+      "Case Studies",
+    ],
+    instructor: "Prof. Jennifer Lee",
+    rating: 4.7,
+  },
+  {
+    id: 9,
+    title:
+      "Unit 9: Organizational Behavior: Leadership, Communication, & Team Dynamics",
+    description:
+      "Understand organizational behavior principles and leadership techniques",
+    estimatedHours: 62,
+    externalLink: "https://example.com/course/unit9",
+    progress: 0,
+    status: "Not Started",
+    dueDate: "August 15, 2025",
+    materials: [
+      "Leadership Models",
+      "Communication Frameworks",
+      "Team Building Exercises",
+    ],
+    instructor: "Dr. David Martinez",
+    rating: 4.9,
+  },
+  {
+    id: 10,
+    title: "Unit 10: Manage people performance",
+    description:
+      "Learn strategies for effective people management and performance optimization",
+    estimatedHours: 71,
+    externalLink: "https://example.com/course/unit10",
+    progress: 0,
+    status: "Not Started",
+    dueDate: "September 1, 2025",
+    materials: [
+      "Performance Management Tools",
+      "Feedback Templates",
+      "Development Plans",
+    ],
+    instructor: "Prof. Sophia Kim",
+    rating: 4.8,
+  },
+];

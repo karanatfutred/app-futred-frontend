@@ -2,8 +2,8 @@ import type React from "react";
 import { Roboto } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import { TopNavbar } from "@/components/top-navbar";
-import { Sidebar } from "@/components/sidebar";
+import { TopNavbar } from "@/components/mainLayout/top-navbar";
+import { Sidebar } from "@/components/mainLayout/sidebar";
 
 // Load Roboto font with all weights
 const roboto = Roboto({
@@ -42,9 +42,7 @@ export default function RootLayout({
   );
 }
 
-
-
-import './globals.css'
+import "./globals.css";
 
 export const metadata = {
   generator: "v0.dev",

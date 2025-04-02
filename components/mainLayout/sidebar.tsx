@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { usePathname, useRouter } from "next/navigation"
+import { useState, useEffect } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import {
   BarChart,
   BookOpen,
@@ -13,20 +13,25 @@ import {
   ChevronDown,
   Calendar,
   Award,
-} from "lucide-react"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
-import Image from "next/image"
+} from "lucide-react";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
+import Image from "next/image";
+import futredLogo from "@/assets/images/futred-logo.png";
 
 export function Sidebar() {
-  const pathname = usePathname()
-  const router = useRouter()
-  const [activeItem, setActiveItem] = useState("dashboard")
-  const [secondarySidebarOpen, setSecondarySidebarOpen] = useState(false)
-  const [activeStack, setActiveStack] = useState<string | null>(null)
-  const [activeSprint, setActiveSprint] = useState<string | null>(null)
-  const [expandedModule, setExpandedModule] = useState<number | null>(1)
+  const pathname = usePathname();
+  const router = useRouter();
+  const [activeItem, setActiveItem] = useState("dashboard");
+  const [secondarySidebarOpen, setSecondarySidebarOpen] = useState(false);
+  const [activeStack, setActiveStack] = useState<string | null>(null);
+  const [activeSprint, setActiveSprint] = useState<string | null>(null);
+  const [expandedModule, setExpandedModule] = useState<number | null>(1);
 
   const primaryNavItems = [
     {
@@ -71,7 +76,7 @@ export function Sidebar() {
       path: "/team-chat",
       color: "text-white",
     },
-  ]
+  ];
 
   const learningStacks = [
     {
@@ -96,7 +101,7 @@ export function Sidebar() {
       active: false,
       sprints: [],
     },
-  ]
+  ];
 
   const learningModules = [
     {
@@ -106,7 +111,8 @@ export function Sidebar() {
       units: [
         {
           id: 1,
-          title: "Foundations of Critical Thinking and Business Problem Solving",
+          title:
+            "Foundations of Critical Thinking and Business Problem Solving",
           active: true,
           externalLink: "https://example.com/course/unit1",
         },
@@ -154,11 +160,17 @@ export function Sidebar() {
         },
         {
           id: 9,
-          title: "Organizational Behavior: Leadership, Communication, & Team Dynamics",
+          title:
+            "Organizational Behavior: Leadership, Communication, & Team Dynamics",
           active: true,
           externalLink: "https://example.com/course/unit9",
         },
-        { id: 10, title: "Manage people performance", active: true, externalLink: "https://example.com/course/unit10" },
+        {
+          id: 10,
+          title: "Manage people performance",
+          active: true,
+          externalLink: "https://example.com/course/unit10",
+        },
       ],
     },
     {
@@ -176,102 +188,111 @@ export function Sidebar() {
       title: "Backend Integration",
       active: false,
     },
-  ]
+  ];
 
   // Set active item based on pathname
   useEffect(() => {
     if (pathname === "/") {
-      setActiveItem("dashboard")
-      setSecondarySidebarOpen(false)
-      setActiveStack(null)
-      setActiveSprint(null)
+      setActiveItem("dashboard");
+      setSecondarySidebarOpen(false);
+      setActiveStack(null);
+      setActiveSprint(null);
     } else if (pathname.startsWith("/learning")) {
-      setActiveItem("learning")
-      setSecondarySidebarOpen(true)
+      setActiveItem("learning");
+      setSecondarySidebarOpen(true);
     } else if (pathname.startsWith("/industry-stack")) {
-      setActiveItem("industry-stack")
-      setSecondarySidebarOpen(true)
+      setActiveItem("industry-stack");
+      setSecondarySidebarOpen(true);
 
       // Check for stack in the URL
-      const stackMatch = pathname.match(/\/industry-stack\/stack\/([^/]+)/)
+      const stackMatch = pathname.match(/\/industry-stack\/stack\/([^/]+)/);
       if (stackMatch) {
-        setActiveStack(stackMatch[1])
+        setActiveStack(stackMatch[1]);
 
         // Check for sprint in the URL
-        const sprintMatch = pathname.match(/\/industry-stack\/stack\/[^/]+\/sprint\/([^/]+)/)
+        const sprintMatch = pathname.match(
+          /\/industry-stack\/stack\/[^/]+\/sprint\/([^/]+)/
+        );
         if (sprintMatch) {
-          setActiveSprint(sprintMatch[1])
+          setActiveSprint(sprintMatch[1]);
         } else {
-          setActiveSprint(null)
+          setActiveSprint(null);
         }
       } else {
-        setActiveStack(null)
-        setActiveSprint(null)
+        setActiveStack(null);
+        setActiveSprint(null);
       }
     } else if (pathname.startsWith("/achievements")) {
-      setActiveItem("achievements")
-      setSecondarySidebarOpen(false)
+      setActiveItem("achievements");
+      setSecondarySidebarOpen(false);
     } else {
-      const item = primaryNavItems.find((item) => pathname.startsWith(item.path))
+      const item = primaryNavItems.find((item) =>
+        pathname.startsWith(item.path)
+      );
       if (item) {
-        setActiveItem(item.id)
-        setSecondarySidebarOpen(item.id === "learning" || item.id === "industry-stack")
+        setActiveItem(item.id);
+        setSecondarySidebarOpen(
+          item.id === "learning" || item.id === "industry-stack"
+        );
         if (item.id !== "learning" && item.id !== "industry-stack") {
-          setActiveStack(null)
-          setActiveSprint(null)
+          setActiveStack(null);
+          setActiveSprint(null);
         }
       }
     }
-  }, [pathname])
+  }, [pathname]);
 
   const handlePrimaryNavClick = (item: (typeof primaryNavItems)[0]) => {
-    setActiveItem(item.id)
+    setActiveItem(item.id);
 
     if (item.id === "learning") {
-      setSecondarySidebarOpen(true)
-      router.push("/learning")
+      setSecondarySidebarOpen(true);
+      router.push("/learning");
     } else if (item.id === "industry-stack") {
-      setSecondarySidebarOpen(true)
-      router.push("/industry-stack")
+      setSecondarySidebarOpen(true);
+      router.push("/industry-stack");
     } else {
-      setSecondarySidebarOpen(false)
-      router.push(item.path)
+      setSecondarySidebarOpen(false);
+      router.push(item.path);
     }
-  }
+  };
 
   const handleStackClick = (stack: (typeof learningStacks)[0]) => {
-    if (!stack.active) return
+    if (!stack.active) return;
 
-    setActiveStack(stack.id)
-    router.push(`/industry-stack/stack/${stack.id}`)
-  }
+    setActiveStack(stack.id);
+    router.push(`/industry-stack/stack/${stack.id}`);
+  };
 
-  const handleSprintClick = (stackId: string, sprint: { id: string; title: string; active: boolean }) => {
-    if (!sprint.active) return
+  const handleSprintClick = (
+    stackId: string,
+    sprint: { id: string; title: string; active: boolean }
+  ) => {
+    if (!sprint.active) return;
 
-    setActiveSprint(sprint.id)
-    router.push(`/industry-stack/stack/${stackId}/sprint/${sprint.id}`)
-  }
+    setActiveSprint(sprint.id);
+    router.push(`/industry-stack/stack/${stackId}/sprint/${sprint.id}`);
+  };
 
   const handleModuleSelect = (moduleId: number) => {
-    const module = learningModules.find((m) => m.id === moduleId)
-    if (!module?.active) return
+    const module = learningModules.find((m) => m.id === moduleId);
+    if (!module?.active) return;
 
-    setExpandedModule(moduleId === expandedModule ? null : moduleId)
+    setExpandedModule(moduleId === expandedModule ? null : moduleId);
 
     if (moduleId === 1) {
-      router.push("/learning")
+      router.push("/learning");
     }
-  }
+  };
 
   const handleUnitSelect = (externalLink: string) => {
     // Open external link in new tab
-    window.open(externalLink, "_blank")
-  }
+    window.open(externalLink, "_blank");
+  };
 
   // Determine which secondary sidebar to show
   const renderSecondarySidebar = () => {
-    if (!secondarySidebarOpen) return null
+    if (!secondarySidebarOpen) return null;
 
     if (activeItem === "learning") {
       return (
@@ -296,13 +317,15 @@ export function Sidebar() {
                       variant="ghost"
                       className={cn(
                         "w-full justify-start gap-3 font-normal h-10",
-                        module.id === 1 && pathname === "/learning" && "bg-brand-yellow/10 text-brand-midnight",
-                        !module.active && "opacity-50",
+                        module.id === 1 &&
+                          pathname === "/learning" &&
+                          "bg-brand-yellow/10 text-brand-midnight",
+                        !module.active && "opacity-50"
                       )}
                       disabled={!module.active}
                       onClick={() => {
                         if (module.id === 1) {
-                          router.push("/learning")
+                          router.push("/learning");
                         }
                       }}
                     >
@@ -334,7 +357,7 @@ export function Sidebar() {
             </div>
           </div>
         </div>
-      )
+      );
     } else if (activeItem === "industry-stack") {
       return (
         <div className="w-64 h-full border-r bg-white flex flex-col">
@@ -353,7 +376,7 @@ export function Sidebar() {
                   open={activeStack === stack.id}
                   onOpenChange={(open) => {
                     if (open && stack.active) {
-                      handleStackClick(stack)
+                      handleStackClick(stack);
                     }
                   }}
                 >
@@ -362,12 +385,18 @@ export function Sidebar() {
                       variant="ghost"
                       className={cn(
                         "w-full justify-start gap-3 font-normal h-10",
-                        activeStack === stack.id && "bg-brand-midnight/10 text-brand-midnight",
-                        !stack.active && "opacity-50",
+                        activeStack === stack.id &&
+                          "bg-brand-midnight/10 text-brand-midnight",
+                        !stack.active && "opacity-50"
                       )}
                       disabled={!stack.active}
                     >
-                      <Calendar className={cn("h-5 w-5", stack.active ? "text-brand-midnight" : "text-gray-400")} />
+                      <Calendar
+                        className={cn(
+                          "h-5 w-5",
+                          stack.active ? "text-brand-midnight" : "text-gray-400"
+                        )}
+                      />
                       <span>{stack.title}</span>
                       {stack.active &&
                         (activeStack === stack.id ? (
@@ -386,8 +415,9 @@ export function Sidebar() {
                             size="sm"
                             className={cn(
                               "w-full justify-start gap-2 font-normal h-8 text-sm",
-                              activeSprint === sprint.id && "bg-brand-midnight/10 text-brand-midnight",
-                              !sprint.active && "text-gray-400",
+                              activeSprint === sprint.id &&
+                                "bg-brand-midnight/10 text-brand-midnight",
+                              !sprint.active && "text-gray-400"
                             )}
                             disabled={!sprint.active}
                             onClick={() => handleSprintClick(stack.id, sprint)}
@@ -398,7 +428,9 @@ export function Sidebar() {
                               <div className="w-2 h-2 rounded-full bg-gray-300" />
                             )}
                             <span>{sprint.title}</span>
-                            {sprint.active && <ChevronRight className="ml-auto h-4 w-4" />}
+                            {sprint.active && (
+                              <ChevronRight className="ml-auto h-4 w-4" />
+                            )}
                           </Button>
                         </li>
                       ))}
@@ -409,11 +441,11 @@ export function Sidebar() {
             </div>
           </div>
         </div>
-      )
+      );
     }
 
-    return null
-  }
+    return null;
+  };
 
   return (
     <div className="flex h-full">
@@ -421,13 +453,19 @@ export function Sidebar() {
       <div
         className={cn(
           "h-full border-r transition-all duration-300 flex flex-col bg-brand-midnight text-white",
-          secondarySidebarOpen ? "w-16" : "w-64",
+          secondarySidebarOpen ? "w-16" : "w-64"
         )}
       >
         <div className="p-4 border-b border-white/10 flex items-center justify-center h-[61px]">
           {!secondarySidebarOpen && (
             <div className="flex items-center gap-2">
-              <Image src="/images/futred-logo.png" alt="Futred" width={120} height={40} className="h-8 w-auto" />
+              <Image
+                src={futredLogo}
+                alt="Futred"
+                width={120}
+                height={40}
+                className="h-8 w-auto"
+              />
             </div>
           )}
           {secondarySidebarOpen && (
@@ -446,15 +484,17 @@ export function Sidebar() {
                   className={cn(
                     "w-full justify-start gap-3 font-normal h-10 text-white hover:bg-white/10",
                     activeItem === item.id && "bg-white/10",
-                    secondarySidebarOpen && "justify-center px-2",
+                    secondarySidebarOpen && "justify-center px-2"
                   )}
                   onClick={() => handlePrimaryNavClick(item)}
                 >
                   <item.icon className={cn("h-5 w-5", item.color)} />
                   {!secondarySidebarOpen && <span>{item.label}</span>}
-                  {!secondarySidebarOpen && (item.id === "learning" || item.id === "industry-stack") && (
-                    <ChevronRight className="ml-auto h-4 w-4" />
-                  )}
+                  {!secondarySidebarOpen &&
+                    (item.id === "learning" ||
+                      item.id === "industry-stack") && (
+                      <ChevronRight className="ml-auto h-4 w-4" />
+                    )}
                 </Button>
               </li>
             ))}
@@ -465,6 +505,5 @@ export function Sidebar() {
       {/* Secondary Sidebar - Learning Modules or Learning Stacks */}
       {renderSecondarySidebar()}
     </div>
-  )
+  );
 }
-

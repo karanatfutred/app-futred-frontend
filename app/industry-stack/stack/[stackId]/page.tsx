@@ -1,74 +1,28 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Progress } from "@/components/ui/progress"
-import { Button } from "@/components/ui/button"
-import { Calendar, ArrowRight, Users, FileText, Code, Layers } from "lucide-react"
-import Link from "next/link"
-import { EnhancedGanttChart } from "@/components/enhanced-gantt-chart"
-import { Badge } from "@/components/ui/badge"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Progress } from "@/components/ui/progress";
+import { Button } from "@/components/ui/button";
+import {
+  Calendar,
+  ArrowRight,
+  Users,
+  FileText,
+  Code,
+  Layers,
+} from "lucide-react";
+import Link from "next/link";
+import { EnhancedGanttChart } from "@/components/enhanced-gantt-chart";
+import { Badge } from "@/components/ui/badge";
+import { getStackData } from "@/data/industryStack";
 
 interface LearningStackPageProps {
   params: {
-    stackId: string
-  }
+    stackId: string;
+  };
 }
 
 export default function LearningStackPage({ params }: LearningStackPageProps) {
-  const { stackId } = params
-
-  // Sample data for Learning Stack 1
-  const stackData = {
-    id: stackId,
-    title: `Learning Stack ${stackId.substring(2)}`,
-    description: "Frontend Development Fundamentals",
-    progress: 35,
-    startDate: "May 1, 2025",
-    endDate: "June 11, 2025",
-    team: ["John Doe", "Jane Smith", "Alex Johnson"],
-    objectives: [
-      "Master HTML, CSS and JavaScript fundamentals",
-      "Build responsive web applications",
-      "Implement modern UI/UX principles",
-      "Learn frontend frameworks and libraries",
-    ],
-    sprints: [
-      {
-        id: "sprint1",
-        title: "Sprint 1",
-        status: "In Progress",
-        startDate: "May 1, 2025",
-        endDate: "May 14, 2025",
-        progress: 35,
-        tasks: 12,
-        completedTasks: 4,
-        description: "Focus on HTML and CSS fundamentals",
-        goals: ["Learn HTML structure", "Master CSS selectors", "Understand the box model"],
-      },
-      {
-        id: "sprint2",
-        title: "Sprint 2",
-        status: "Not Started",
-        startDate: "May 15, 2025",
-        endDate: "May 28, 2025",
-        progress: 0,
-        tasks: 15,
-        completedTasks: 0,
-        description: "JavaScript basics and DOM manipulation",
-        goals: ["Learn JavaScript syntax", "Understand DOM manipulation", "Implement event handlers"],
-      },
-      {
-        id: "sprint3",
-        title: "Sprint 3",
-        status: "Not Started",
-        startDate: "May 29, 2025",
-        endDate: "June 11, 2025",
-        progress: 0,
-        tasks: 18,
-        completedTasks: 0,
-        description: "Building a complete frontend project",
-        goals: ["Create a responsive layout", "Implement interactive features", "Deploy the project"],
-      },
-    ],
-  }
+  const { stackId } = params;
+  const stackData = getStackData(stackId);
 
   return (
     <div className="space-y-8">
@@ -77,7 +31,9 @@ export default function LearningStackPage({ params }: LearningStackPageProps) {
           <h1 className="text-2xl font-bold">{stackData.title}</h1>
           <p className="text-muted-foreground mt-1">{stackData.description}</p>
         </div>
-        <Badge className="bg-green-100 text-green-800 hover:bg-green-200 px-3 py-1 text-sm">Active</Badge>
+        <Badge className="bg-green-100 text-green-800 hover:bg-green-200 px-3 py-1 text-sm">
+          Active
+        </Badge>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -145,18 +101,26 @@ export default function LearningStackPage({ params }: LearningStackPageProps) {
             </div>
             <div className="grid grid-cols-3 gap-2 text-center">
               <div className="bg-blue-50 p-2 rounded-md">
-                <div className="text-lg font-medium">{stackData.sprints.length}</div>
+                <div className="text-lg font-medium">
+                  {stackData.sprints.length}
+                </div>
                 <div className="text-xs text-muted-foreground">Sprints</div>
               </div>
               <div className="bg-blue-50 p-2 rounded-md">
                 <div className="text-lg font-medium">
-                  {stackData.sprints.reduce((acc, sprint) => acc + sprint.tasks, 0)}
+                  {stackData.sprints.reduce(
+                    (acc, sprint) => acc + sprint.tasks,
+                    0
+                  )}
                 </div>
                 <div className="text-xs text-muted-foreground">Tasks</div>
               </div>
               <div className="bg-blue-50 p-2 rounded-md">
                 <div className="text-lg font-medium">
-                  {stackData.sprints.reduce((acc, sprint) => acc + sprint.completedTasks, 0)}
+                  {stackData.sprints.reduce(
+                    (acc, sprint) => acc + sprint.completedTasks,
+                    0
+                  )}
                 </div>
                 <div className="text-xs text-muted-foreground">Completed</div>
               </div>
@@ -205,14 +169,22 @@ export default function LearningStackPage({ params }: LearningStackPageProps) {
                 <CardTitle className="flex justify-between items-center text-lg">
                   <span>{sprint.title}</span>
                   {sprint.status === "In Progress" ? (
-                    <Badge className="bg-green-100 text-green-800 hover:bg-green-100">In Progress</Badge>
+                    <Badge className="bg-green-100 text-green-800 hover:bg-green-100">
+                      In Progress
+                    </Badge>
                   ) : sprint.status === "Completed" ? (
-                    <Badge className="bg-blue-100 text-blue-800 hover:bg-blue-100">Completed</Badge>
+                    <Badge className="bg-blue-100 text-blue-800 hover:bg-blue-100">
+                      Completed
+                    </Badge>
                   ) : (
-                    <Badge className="bg-gray-100 text-gray-800 hover:bg-gray-100">Not Started</Badge>
+                    <Badge className="bg-gray-100 text-gray-800 hover:bg-gray-100">
+                      Not Started
+                    </Badge>
                   )}
                 </CardTitle>
-                <p className="text-sm text-muted-foreground">{sprint.description}</p>
+                <p className="text-sm text-muted-foreground">
+                  {sprint.description}
+                </p>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex items-center justify-between text-sm text-muted-foreground">
@@ -261,8 +233,12 @@ export default function LearningStackPage({ params }: LearningStackPageProps) {
                 </div>
 
                 {sprint.status === "In Progress" && (
-                  <Link href={`/industry-stack/stack/${stackId}/sprint/${sprint.id}`}>
-                    <Button className="w-full bg-blue-600 hover:bg-blue-700">Go to Sprint Board</Button>
+                  <Link
+                    href={`/industry-stack/stack/${stackId}/sprint/${sprint.id}`}
+                  >
+                    <Button className="w-full bg-blue-600 hover:bg-blue-700">
+                      Go to Sprint Board
+                    </Button>
                   </Link>
                 )}
 
@@ -282,10 +258,11 @@ export default function LearningStackPage({ params }: LearningStackPageProps) {
           <Button variant="outline">Back to Industry Stack</Button>
         </Link>
         <Link href={`/industry-stack/stack/${stackId}/sprint/sprint1`}>
-          <Button className="bg-blue-600 hover:bg-blue-700">Go to Current Sprint</Button>
+          <Button className="bg-blue-600 hover:bg-blue-700">
+            Go to Current Sprint
+          </Button>
         </Link>
       </div>
     </div>
-  )
+  );
 }
-

@@ -1,40 +1,36 @@
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
 interface Sprint {
-  id: string
-  title: string
-  status: string
-  startDate: string
-  endDate: string
-  progress: number
+  id: string;
+  title: string;
+  status: string;
+  startDate: string;
+  endDate: string;
+  progress: number;
 }
 
-interface GanttChartProps {
-  sprints: Sprint[]
-}
-
-export function GanttChart({ sprints }: GanttChartProps) {
+export function GanttChart({ sprints }) {
   // Sample dates for visualizing the Gantt chart
-  const totalDays = 42 // 6 weeks
-  const startDate = new Date("2025-05-01")
+  const totalDays = 42; // 6 weeks
+  const startDate = new Date("2025-05-01");
   const dateLabels = Array.from({ length: 6 }, (_, i) => {
-    const date = new Date(startDate)
-    date.setDate(date.getDate() + i * 7)
-    return date.toLocaleDateString("en-US", { month: "short", day: "numeric" })
-  })
+    const date = new Date(startDate);
+    date.setDate(date.getDate() + i * 7);
+    return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+  });
 
   // Calculate positions for the sprints (simplified for example)
   const sprintsWithPosition = sprints.map((sprint, index) => {
     // Each sprint is 2 weeks (14 days) for this example
-    const startDay = index * 14
-    const duration = 14
+    const startDay = index * 14;
+    const duration = 14;
 
     return {
       ...sprint,
       startPosition: (startDay / totalDays) * 100,
       width: (duration / totalDays) * 100,
-    }
-  })
+    };
+  });
 
   return (
     <div className="space-y-4">
@@ -51,13 +47,20 @@ export function GanttChart({ sprints }: GanttChartProps) {
       <div className="h-8 relative border-t border-b grid grid-cols-6">
         {Array.from({ length: 6 }).map((_, i) => (
           <div key={i} className="border-r">
-            {i === 0 && <div className="absolute left-0 top-0 h-full border-l" />}
+            {i === 0 && (
+              <div className="absolute left-0 top-0 h-full border-l" />
+            )}
           </div>
         ))}
 
         {/* Today marker */}
-        <div className="absolute top-0 h-full w-0.5 bg-red-500 z-10" style={{ left: "15%" }}>
-          <div className="absolute -top-5 left-1/2 -translate-x-1/2 text-xs text-red-500 whitespace-nowrap">Today</div>
+        <div
+          className="absolute top-0 h-full w-0.5 bg-red-500 z-10"
+          style={{ left: "15%" }}
+        >
+          <div className="absolute -top-5 left-1/2 -translate-x-1/2 text-xs text-red-500 whitespace-nowrap">
+            Today
+          </div>
         </div>
 
         {/* Sprint bars */}
@@ -76,11 +79,13 @@ export function GanttChart({ sprints }: GanttChartProps) {
                 sprint.status === "In Progress"
                   ? "bg-green-200 border border-green-400"
                   : sprint.status === "Completed"
-                    ? "bg-blue-200 border border-blue-400"
-                    : "bg-gray-200 border border-gray-400",
+                  ? "bg-blue-200 border border-blue-400"
+                  : "bg-gray-200 border border-gray-400"
               )}
             >
-              <span className="text-xs font-medium truncate">{sprint.title}</span>
+              <span className="text-xs font-medium truncate">
+                {sprint.title}
+              </span>
             </div>
           </div>
         ))}
@@ -102,6 +107,5 @@ export function GanttChart({ sprints }: GanttChartProps) {
         </div>
       </div>
     </div>
-  )
+  );
 }
-

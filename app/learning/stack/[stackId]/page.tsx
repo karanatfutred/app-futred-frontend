@@ -3,7 +3,7 @@ import { Progress } from "@/components/ui/progress"
 import { Button } from "@/components/ui/button"
 import { Check, Clock, Calendar, ArrowRight } from "lucide-react"
 import Link from "next/link"
-import { GanttChart } from "@/components/gantt-chart"
+import { GanttChart } from "@/components/learning/gantt-chart"
 
 interface LearningStackPageProps {
   params: {

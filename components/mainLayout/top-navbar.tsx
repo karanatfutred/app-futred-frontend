@@ -1,15 +1,16 @@
-"use client"
+"use client";
 
-import { Bell, Menu, Search } from "lucide-react"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import Image from "next/image"
+import { Bell, Menu, Search } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import Image from "next/image";
+import futredLogo from "@/assets/images/futred-logo.png";
 
 export function TopNavbar() {
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   return (
     <header className="border-b border-border py-3 px-4 flex items-center justify-between bg-brand-midnight text-white">
@@ -19,7 +20,13 @@ export function TopNavbar() {
         </Button>
         <Link href="/" className="flex items-center gap-2">
           <div className="h-8 w-auto">
-            <Image src="/images/futred-logo.png" alt="Futred" width={120} height={40} className="h-full w-auto" />
+            <Image
+              src={futredLogo}
+              alt="Futred"
+              width={120}
+              height={40}
+              className="h-full w-auto"
+            />
           </div>
         </Link>
       </div>
@@ -42,10 +49,11 @@ export function TopNavbar() {
         </Button>
         <Avatar>
           <AvatarImage src="/placeholder.svg?height=32&width=32" />
-          <AvatarFallback className="bg-brand-yellow text-brand-midnight font-medium">JD</AvatarFallback>
+          <AvatarFallback className="bg-brand-yellow text-brand-midnight font-medium">
+            JD
+          </AvatarFallback>
         </Avatar>
       </div>
     </header>
-  )
+  );
 }
-
